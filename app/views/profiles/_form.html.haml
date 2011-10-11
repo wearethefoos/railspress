@@ -1,0 +1,13 @@
+= simple_form_for @profile do |f|
+
+  = f.input :name, :value => current_user.name
+  = f.input :about, :as => :text
+  
+  = f.simple_fields_for :image do |p|
+    = image_tag(@profile.image.file_url(:thumb)) if @profile.image.file?
+    = p.label :file, 'Photo'
+    = p.file_field :file
+    = p.hidden_field :file_cache
+
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,29 @@
+= simple_form_for(@post) do |f|
+  /= f.error_notification
+
+  .actions
+    = f.button :submit
+    
+  .inputs
+    = f.input :title
+    = f.input :intro, :as => :text
+    = f.input :body, :as => :text
+    /= f.association :tags
+    
+  .field
+    #images-form
+      - k = 0
+      %ul
+        = f.simple_fields_for :images do |p|
+          %li{:id => "image-#{k}", :class => 'image'}
+            = image_tag(@post.images[k].file_url(:thumb)) if @post.images[k].file?
+            = p.label :file, 'image'
+            = p.file_field :file
+            = p.label :caption, 'Title'
+            = p.text_field :caption, :placeholder => 'image description ...'
+            = p.hidden_field :file_cache
+            = p.check_box :_destroy
+            = p.label :_destroy, 'X', :class => 'button'
+            - k += 1
+        %li 
+          %a{:id => 'plus', :class => 'plus button'} Add another image

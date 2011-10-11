@@ -1,0 +1,29 @@
+%p#notice= notice
+
+%article.post.eleven.columns.alpha
+  %h2.title.ten.columns.alpha.omega= @post.title
+  .date.ten.columns.alpha.omega
+    posted
+    = time_ago_in_words(@post.created_at)
+    ago by 
+    =@post.user.profile.name
+  .intro.ten.columns.alpha.omega
+    -if @post.images.present?
+      .images.four.columns.alpha
+        - @post.images.each do |image|
+          = image_tag(image.file_url(:small)) if image.file?
+    :redcarpet
+      #{@post.intro}
+  .body.ten.columns.alpha.omega
+    :redcarpet
+      #{@post.body}
+  .stats.ten.columns.alpha.omega
+    Reads:
+    = @post.reads
+  .comments.ten.columns.alpha.omega
+    = render 'comments'
+
+-if @post.user == current_user
+  = link_to 'Edit', edit_post_path(@post)
+  \|
+= link_to 'Back', root_path

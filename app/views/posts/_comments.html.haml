@@ -1,0 +1,44 @@
+%h3 Comments
+- if current_user
+  = form_for Comment.new, :url => '/comments', :method => 'post' do |f|
+    %div{:style => "margin:0;padding:0;display:inline"}
+      = f.hidden_field :post_id, :value => @post.id.to_s
+    %p
+      = f.label :body, 'Write a comment'
+      = f.text_area :body, {:rows => 7, :cols => 40}
+    %p
+      = f.submit "submit"
+- else
+  %p
+    = link_to "Google login", omniauth_authorize_path(:user, :google), :id => 'google-login'
+    or
+    = link_to "Facebook login", omniauth_authorize_path(:user, :facebook), :id => 'facebook-login'
+    to leave a comment
+
+- if @post.comments.any?
+  - @post.comments.each do |comment|
+    .one.column
+      = image_tag(comment.user.profile.image.file_url(:thumb)) if comment.user.profile.image.present?
+    %div{:class => "comment five columns", :id => "comment_#{comment.id}"} 
+      %p
+        by
+        = link_to comment.user.profile.name, comment.user.profile
+        %br
+        = time_ago_in_words(comment.created_at)
+        ago
+      %p
+      :redcarpet
+        #{comment.body}
+    .clear
+
+#reply_template{:style => "display:none"}
+  = form_for Comment.new, :url => "recipes/#{@post.id}/comment", :method => 'post' do |f|
+    %div{:style => "margin:0;padding:0;display:inline"}
+      = f.hidden_field :post_id, :value => @post.id.to_s
+      = f.hidden_field :parent_id, :class => "reply_parent_id"
+    %p
+      = f.label :body, 'Write a reply'
+      = f.text_area :body, {:rows => 7, :cols => 40}
+    %p
+      = f.submit "reply"
+    .clear

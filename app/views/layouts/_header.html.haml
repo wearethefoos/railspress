@@ -1,0 +1,14 @@
+%header
+  %h1 
+    =link_to 'Foxycoder.com', root_path
+  %p 
+    -if user_signed_in?
+      =link_to 'logout', destroy_user_session_path, :method => :delete
+      =link_to current_user.name, '/profile/edit'
+    -else
+      = link_to "Google login", omniauth_authorize_path(:user, :google), :id => 'google-login'
+      = link_to "Facebook login", omniauth_authorize_path(:user, :facebook), :id => 'facebook-login'
+    %br
+    =link_to '@wrdevos', 'http://twitter.com/#!/wrdevos'
+    %br
+    webdeveloper and usability freak.

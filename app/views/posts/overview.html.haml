@@ -1,0 +1,20 @@
+.posts.eleven.columns.alpha
+  - @posts.each do |post|
+    %article.post
+      %h2.title.ten.columns.alpha.omega= link_to_post post
+      .date.ten.columns.alpha.omega
+        posted
+        = time_ago_in_words(post.created_at)
+        ago by 
+        =post.user.profile.name
+      .intro.ten.columns.alpha.omega
+        -if post.images.present?
+          .images.two.columns.alpha
+            - post.images.each do |image|
+              = image_tag(image.file_url(:thumb)) if image.file?
+        :redcarpet
+          #{post.intro}
+        = link_to_post post, 'read more'
+      .stats.ten.columns.alpha.omega
+        Reads:
+        = post.reads

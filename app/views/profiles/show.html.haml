@@ -1,0 +1,17 @@
+.pane
+
+  .ten.columns
+  
+    .two.columns.alpha
+      = image_tag(@profile.image.file_url(:small)) if @profile.image.present?
+    
+    .eight.columns.omega  
+      %h2= @profile.name
+      
+      %p= @profile.about
+    
+
+    - if @profile.user == current_user
+      = link_to 'Edit your profile', edit_profile_path(@profile)
+      
+  .clear

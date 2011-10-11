@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %title Foxycoder.com
+    = stylesheet_link_tag    "application"
+    
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    
+  %body
+    .topbar
+    .container
+      = render :partial => "layouts/header"
+      = yield
+    .clear
+    = render :partial => "layouts/footer"
