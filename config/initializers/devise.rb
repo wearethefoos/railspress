@@ -194,7 +194,7 @@ Devise.setup do |config|
   
   require 'openid/store/filesystem'
   
-  config.omniauth :facebook, "242563875790476", "fadd08cb3972414a85ce6059126a2cdc",
+  config.omniauth :facebook, ENV['FACEBOOK_APP_KEY'], ENV['FACEBOOK_APP_SECRET'],
     {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
   # config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
   config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
