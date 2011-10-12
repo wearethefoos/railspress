@@ -8,7 +8,9 @@ test:
 
 # set these environment variables on your prod server
 production:
-  uri: <%= ENV['MONGOHQ_URL'] %> # $ heroku addons:add mongohq:free
+  # uri: <%= ENV['MONGOHQ_URL'] %> # $ heroku addons:add mongohq:free
+  host: localhost
+  database: foxycoder
   # host: <%= ENV['MONGOID_HOST'] %>
   # port: <%= ENV['MONGOID_PORT'] %>
   # username: <%= ENV['MONGOID_USERNAME'] %>
