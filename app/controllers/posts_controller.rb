@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    authorize! :manage, Post
+    
     @posts = Post.all
 
     respond_to do |format|
