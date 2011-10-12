@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   load_and_authorize_resource :except => [:overview, :show]
-  caches_action :overview
 
   # GET /posts
   # GET /posts.json
@@ -59,8 +58,6 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    expire_action :action => :overview
-    
     @post = Post.new(params[:post])
     @post.user = current_user
     
@@ -77,9 +74,7 @@ class PostsController < ApplicationController
 
   # PUT /posts/1
   # PUT /posts/1.json
-  def update
-    expire_action :action => :overview
-    
+  def update  
     @post = Post.find(params[:id])
 
     respond_to do |format|
@@ -95,9 +90,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   # DELETE /posts/1.json
-  def destroy
-    expire_action :action => :overview
-    
+  def destroy    
     @post = Post.find(params[:id])
     @post.destroy
 
