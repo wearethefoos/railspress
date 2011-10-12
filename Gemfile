@@ -24,7 +24,7 @@ gem 'albino'
 gem 'sprockets'
 
 gem 'devise'
-gem 'cancan'
+gem 'cancan', :git => 'https://github.com/ryanb/cancan.git', :tag => '1.6.6'
 gem "omniauth", :git => 'https://github.com/intridea/omniauth.git', :tag => 'v0.2.6'
 gem 'oa-openid'
 
