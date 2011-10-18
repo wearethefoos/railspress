@@ -5,5 +5,9 @@
         %loc= url_to_post post
         -if post.images.any?
           %image:image
-            %image:loc
-              = post.images.first.file_url(:thumb) if post.images.first.file?
+            - found = false
+            -post.images.each do |image|
+              - if image.file? and found == false
+                %image:loc
+                  = image.file_url(:thumb)
+                  - found = true
