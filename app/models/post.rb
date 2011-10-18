@@ -28,6 +28,12 @@ class Post
     end
   end
   
+  def validate_images
+    images.each do |image|
+      image.send(:_run_validation_callbacks)
+    end
+  end
+  
   def self.find_by_slug(slug, year=nil, month=nil)
     post = nil
     unless year.nil? or month.nil?
@@ -67,6 +73,12 @@ class Post
       tail = "-#{int}"
     end
     self.slug = initial + tail
+  end
+  
+  # forward validation to embedded documents
+  def valid?(*)
+     _run_validation_callbacks { super }
+     validate_images
   end
   
 end
