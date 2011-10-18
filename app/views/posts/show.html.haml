@@ -20,6 +20,8 @@
   .stats.ten.columns.alpha.omega
     // Like buttons
     .like
+      =link_to "Tweet", "https://twitter.com/share", :class => 'twitter-share-button', 'data-count' => 'horizontal', 'data-via' => 'wrdevos'
+      %script{:type => 'text/javascript', :src => '//platform.twitter.com/widgets.js'}
       %g:plusone{:annotation => "inline"}
       %br
       .fb-like{"data-href" => url_to_post(@post, true), "data-send" => "true", "data-width" => "450", "data-show-faces" => "false"}

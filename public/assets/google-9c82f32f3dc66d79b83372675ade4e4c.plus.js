@@ -1,0 +1,1 @@
+(function(){var a,b;a=document.createElement("script"),a.type="text/javascript",a.async=!0,a.src="https://apis.google.com/js/plusone.js",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)}).call(this)
