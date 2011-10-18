@@ -18,6 +18,11 @@
     :redcarpet
       #{@post.body}
   .stats.ten.columns.alpha.omega
+    // Like buttons
+    .like
+      %g:plusone{:annotation => "inline"}
+      %br
+      .fb-like{"data-href" => url_to_post(@post, true), "data-send" => "true", "data-width" => "450", "data-show-faces" => "false"}
     Reads:
     = @post.reads
   .comments.ten.columns.alpha.omega
