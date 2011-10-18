@@ -1,7 +1,10 @@
 !!! 5
 %html
   %head
-    %title Foxycoder.com
+    -if @post.nil?
+      %title Foxycoder.com
+    -else
+      %title= "#{@post.title} | Foxycoder.com"
     = stylesheet_link_tag    "application"
     
     = javascript_include_tag "application"
