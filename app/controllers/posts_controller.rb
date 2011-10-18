@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.xml { render :partial => 'sitemap' }
       format.json { render json: @posts }
     end
   end
