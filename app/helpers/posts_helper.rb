@@ -6,8 +6,12 @@ module PostsHelper
     link_to(text, url_to_post(post)).html_safe
   end
   
-  def url_to_post(post)
+  def url_to_post(post, full=false)
     t = post.created_at
-    "/read/#{t.year}/#{t.month}/#{post.slug}"
+    url = "/read/#{t.year}/#{t.month}/#{post.slug}"
+    if full
+      url = 'http://foxycoder.com' + url
+    end
+    url
   end
 end
