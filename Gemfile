@@ -60,3 +60,7 @@ group :test do
   gem 'heroku'
   gem 'turn', :require => false
 end
+
+group :production do
+  gem 'memcache-client'
+end
