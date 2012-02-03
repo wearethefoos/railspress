@@ -15,6 +15,8 @@ class Comment
   belongs_to  :user
   
   validates :body, :presence => true
+
+  after_create :notify
   
   # Upvote this comment.
   def upvote(user)
@@ -23,5 +25,9 @@ class Comment
       self.votes += 1
       self.save
     end
+  end
+
+  def notify
+    CommentMailer::new_comment(self, post).deliver
   end
 end
