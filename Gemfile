@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'thin'
+gem 'memcached'
 
 gem 'mongoid', :git => 'https://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
@@ -59,8 +60,4 @@ group :test do
   gem 'cucumber-rails'
   gem 'heroku'
   gem 'turn', :require => false
-end
-
-group :production do
-  gem 'memcache-client'
 end

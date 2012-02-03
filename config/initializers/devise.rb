@@ -197,7 +197,7 @@ Devise.setup do |config|
   config.omniauth :facebook, ENV['FACEBOOK_APP_KEY'], ENV['FACEBOOK_APP_SECRET'],
     {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}} 
   # config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp')
-  config.omniauth :open_id, OpenID::Store::Filesystem.new('/tmp'), :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
+  config.omniauth :open_id, nil, :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   # config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
