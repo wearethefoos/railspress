@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'thin'
-gem 'memcached'
+gem 'memcache-client'
 
 gem 'mongoid', :git => 'https://github.com/mongoid/mongoid.git'
 gem 'bson_ext'
