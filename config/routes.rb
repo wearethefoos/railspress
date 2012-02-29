@@ -1,6 +1,7 @@
-Foxycoder::Application.routes.draw do
-  get '/posts/overview'
-  
+Foxycoder::Application.routes.draw do 
+  get 'posts/overview'
+  match 'feed' => 'posts#feed'
+
   resources :posts
   resources :profiles
   resources :comments
