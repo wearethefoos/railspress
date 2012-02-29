@@ -1,23 +1,23 @@
 %p#notice= notice
 
-%article.post.eleven.columns.alpha
-  %h2.title.ten.columns.alpha.omega= @post.title
-  .date.ten.columns.alpha.omega
+%article.post.ten.columns.alpha
+  %h2.title.eight.columns.alpha.omega= @post.title
+  .date.eight.columns.alpha.omega
     posted
     = time_ago_in_words(@post.created_at)
     ago by 
     =@post.user.profile.name
-  .intro.ten.columns.alpha.omega
+  .intro.eight.columns.alpha.omega
     -if @post.images.present?
       .images.four.columns.alpha
         - @post.images.each do |image|
           = image_tag(image.file_url(:small)) if image.file?
     :redcarpet
       #{@post.intro}
-  .body.ten.columns.alpha.omega
+  .body.eight.columns.alpha.omega
     :redcarpet
       #{@post.body}
-  .stats.ten.columns.alpha.omega
+  .stats.eight.columns.alpha.omega
     // Like buttons
     .like
       =link_to "Tweet", "https://twitter.com/share", :class => 'twitter-share-button', 'data-count' => 'horizontal', 'data-via' => 'wrdevos'
@@ -27,8 +27,12 @@
       .fb-like{"data-href" => url_to_post(@post, true), "data-send" => "true", "data-width" => "450", "data-show-faces" => "false"}
     Reads:
     = @post.reads
-  .comments.ten.columns.alpha.omega
+  .comments.eight.columns.alpha.omega
     = render 'comments'
+
+%aside.recents.four.columns.omega.right
+  %h3 Recent posts
+  = render 'recents'
 
 -if @post.user == current_user
   = link_to 'Edit', edit_post_path(@post)

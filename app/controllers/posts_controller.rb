@@ -34,6 +34,8 @@ class PostsController < ApplicationController
     @post = Post.find_by_slug(params[:slug], params[:year], params[:month])
     @post.read_up
 
+    @recents = Post.all(sort: [[ :created_at, :desc ], [ :reads, :desc ]], limit: 10)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
