@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource :except => [:overview, :show]
+  load_and_authorize_resource :except => [:overview, :show, :feed]
 
   # GET /posts
   # GET /posts.json
@@ -23,6 +23,14 @@ class PostsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @posts }
     end
+  end
+
+  def feed
+    authorize! :read, Post
+
+    @posts = Post.all(sort: [[ :created_at, :desc ], [ :reads, :desc ]])
+    render layout: false
+    response.headers['Content-Type'] = 'application/xml; charset=utf8'
   end
 
   # GET /posts/1

@@ -1,0 +1,15 @@
+%rss{version: "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/"}
+  %channel
+
+    %title Foxycoder.com articles
+    %link= 'http://' + request.host
+    %description Foxycoder.com Webdeveloper and usability freak
+
+    - @posts.each do |post|
+      %item
+        %title= post.title
+        %link= url_to_post post, true
+        %description= post.intro
+        %guid= url_to_post post, true
+        %pubDate= post.created_at
+
